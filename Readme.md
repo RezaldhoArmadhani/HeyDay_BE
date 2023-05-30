@@ -145,7 +145,7 @@ Contributions are what make the open source community such an amazing place to b
 
 :rocket: [`Backend HeyDay`](https://github.com/RezaldhoArmadhani/HeyDay_BE)
 
-:rocket: [`Frontend HeyDay`](https://github.com/RezaldhoArmadhani/HeyDay-FE)
+:rocket: [`Frontend HeyDay`](https://github.com/RezaldhoArmadhani/HeyDay_FE)
 
 :rocket: [`Demo HeyDay`](https://hey-day-fe.vercel.app/)
 
