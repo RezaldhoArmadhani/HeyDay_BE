@@ -1,7 +1,7 @@
 <br />
 <p align="center">
 <div align="center">
-<img height="110" src="doc\logo.png" alt="Blanja" border="0"/>
+<img height="110" src="doc\Logoo.png" alt="Blanja" border="0"/>
 </div>
   <h3 align="center">Backend HeyDay</h3>
   <p align="center">
