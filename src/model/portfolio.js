@@ -22,9 +22,9 @@ const insertPortfolio = (data) => {
 };
 
 const updatePortfolio = (data) => {
-  const { id, name, id_worker, link, type } = data;
+  const { id, name, id_worker, repository, image } = data;
   return Pool.query(
-    `UPDATE portfolio SET name='${name}', repository='${link}', type='${type}' WHERE id_worker='${id_worker}' and id_portfolio='${id}'`
+    `UPDATE portfolio SET name='${name}', repository='${repository}', image='${image}' WHERE id_worker='${id_worker}' and id_portfolio='${id}'`
   );
 };
 

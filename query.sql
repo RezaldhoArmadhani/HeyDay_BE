@@ -15,6 +15,22 @@ create table workers (
     role varchar(255)
 )
 
+create table recruiters (
+    id_recruiter varchar(255) primary key,
+    name varchar(255) not null,
+    email varchar(255) not null,
+    phone varchar(255) not null,
+    position varchar(255) not null,
+    password varchar(255) not null,
+    job_field varchar(255),
+    city varchar(255),
+    description varchar(255),
+    instagram varchar(255),
+    linkedin varchar(255),
+    company_name varchar(255),
+    role varchar(255)
+)
+
 create table skills (
     id_skill varchar(255) primary key,
     name varchar(255) not null,
@@ -31,6 +47,16 @@ create table portfolio (
     CONSTRAINT fk_worker FOREIGN KEY (id_worker) REFERENCES workers(id_worker)
 )
 
+create table experiences (
+    id_experience varchar(255) primary key,
+    id_worker varchar(255),
+    CONSTRAINT fk_worker FOREIGN KEY (id_worker) REFERENCES workers(id_worker),
+    company_name varchar(255),
+    jobdesk varchar(255),
+    date_start date,
+    date_end date,
+    description varchar(255)
+)
 
 
 -- ----------------------------------------

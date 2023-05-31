@@ -86,16 +86,7 @@ const workerController = {
 
   updateWorker: async (req, res) => {
     const id = req.params.id;
-    const {
-      name,
-      phone,
-      email,
-      workplace,
-      jobdesk,
-      address,
-      description,
-      image,
-    } = req.body;
+    const { name, phone, workplace, jobdesk, address, description } = req.body;
 
     const oldDataResult = await selectWorker(id);
     const oldData = oldDataResult.rows[0];
@@ -110,13 +101,12 @@ const workerController = {
       id,
       name,
       phone,
-      email,
       workplace,
       jobdesk,
       address,
       description,
-      image,
     };
+    console.log(data);
 
     if (req.file) {
       const upload = await uploadPhotoCloudinary(req.file.path);

@@ -100,7 +100,10 @@ const portfolioController = {
   updatePortfolio: async (req, res) => {
     const id = req.params.id;
     const id_worker = req.payload.id;
-    const { name, link, type } = req.body;
+    const { name, repository } = req.body;
+
+    const oldDataResult = await selectPortfolio(id);
+    const oldData = oldDataResult.rows[0];
 
     const { rowCount } = await findId(id);
     if (!rowCount) return res.json({ message: "Portfolio not exist!" });
@@ -108,10 +111,19 @@ const portfolioController = {
     const data = {
       id,
       name,
-      link,
-      type,
+      repository,
       id_worker,
     };
+    console.log(data);
+    if (req.file) {
+      const upload = await uploadPhotoCloudinary(req.file.path);
+      data.image = upload.secure_url || url;
+      console.log(data.image);
+    } else {
+      data.image = oldData.image;
+      console.log(data.image);
+    }
+
     updatePortfolio(data)
       .then((result) => {
         commonHelper.response(res, result.rows, 201, "Data portfolio Updated!");
@@ -145,29 +157,28 @@ const portfolioController = {
     const id = uuidv4();
 
     const { name, type, repository } = req.body;
-    console.log(req.body);
-    console.log("hello");
-    // if (req.file == undefined)
-    //   return commonHelper.response(res, null, 400, "Please input image");
-    // const upload = await uploadPhotoCloudinary(req.file.path);
 
-    // const data = {
-    //   id,
-    //   id_worker,
-    //   name,
-    //   repository,
-    //   type,
-    //   // image: upload.secure_url,
-    // };
-    // // console.log(name_portfolio, repo_link, type_portfolio);
+    if (req.file == undefined)
+      return commonHelper.response(res, null, 400, "Please input image");
+    const upload = await uploadPhotoCloudinary(req.file.path);
 
-    // insertPortfolio(data)
-    //   .then((result) => {
-    //     commonHelper.response(res, result.rows, 201, "Data Portfolio Created");
-    //   })
-    //   .catch((error) => {
-    //     res.send(error);
-    //   });
+    const data = {
+      id,
+      id_worker,
+      name,
+      repository,
+      type,
+      image: upload.secure_url,
+    };
+    // console.log(name_portfolio, repo_link, type_portfolio);
+
+    insertPortfolio(data)
+      .then((result) => {
+        commonHelper.response(res, result.rows, 201, "Data Portfolio Created");
+      })
+      .catch((error) => {
+        res.send(error);
+      });
   },
 };
 

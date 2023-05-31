@@ -20,7 +20,7 @@ const insertExperience = (data) => {
   const { id, id_worker, company, jobdesk, startdate, enddate, description } =
     data;
   return Pool.query(
-    `INSERT INTO experiences (id_experience,id_worker,jobdesk,company_name,date_start,date_end, description) VALUES('${id}','${id_worker}','${jobdesk}','${company}','${startdate}','${startdate}','${description}')`
+    `INSERT INTO experiences (id_experience,id_worker,jobdesk,company_name,date_start,date_end, description) VALUES('${id}','${id_worker}','${jobdesk}','${company}','${startdate}','${enddate}','${description}')`
   );
 };
 
